@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { environment } from './../../../environments/environment.prod';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Tema } from 'src/app/model/Tema';
-import { TemaService } from 'src/app/service/tema.service';
-import { environment } from 'src/environments/environment.prod';
+import { TemaService } from './../../service/tema.service';
+import { Tema } from './../../model/Tema';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tema-edit',
@@ -19,8 +19,8 @@ export class TemaEditComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit(){
-    if (environment.token == ''){
+  ngOnInit() {
+    if(environment.token == ''){
       this.router.navigate(['/entrar'])
     }
 
@@ -29,7 +29,7 @@ export class TemaEditComponent implements OnInit {
   }
 
   findByIdTema(id: number){
-    this.temaService.getByIdTema(id).subscribe((resp: Tema)=>{
+    this.temaService.getByIdTema(id).subscribe((resp: Tema) => {
       this.tema = resp
     })
   }
@@ -41,4 +41,5 @@ export class TemaEditComponent implements OnInit {
       this.router.navigate(['/tema'])
     })
   }
+
 }
